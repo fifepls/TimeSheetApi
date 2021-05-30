@@ -23,4 +23,4 @@ Timesheet представляет собой небольшое Rest web api д
 
 Функционал роли фрилансер(mapping localhost:8080/Freelance)
 Может добавлять часы себе, только если от текущей даты прошло не более двух дней(/selfHoursAdd с параметрами date, hours)
-Может получать отчет только за себя (/selfReport с параметрами date, daysValue может быть day,week,month)
+Может получать отчет только за себя (/selfReport с параметрами date, daysValue может быть day,week,month).
