@@ -1,10 +1,7 @@
 package com.SoftDevTimeSheet.dao;
 
 import com.SoftDevTimeSheet.entity.WorkedDay;
-import org.hibernate.jdbc.Work;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class WorkerDAO implements IWorkerDAO {
 
     @Override

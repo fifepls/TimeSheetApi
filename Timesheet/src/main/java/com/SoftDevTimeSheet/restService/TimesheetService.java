@@ -3,7 +3,6 @@ package com.SoftDevTimeSheet.restService;
 import com.SoftDevTimeSheet.dao.DAOException;
 import com.SoftDevTimeSheet.dao.IWorkerDAO;
 import com.SoftDevTimeSheet.dao.ReportDaysValue;
-import com.SoftDevTimeSheet.dao.WorkerDAO;
 import com.SoftDevTimeSheet.entity.WorkedDay;
 import com.SoftDevTimeSheet.util.StringToReportDaysValueParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,15 @@ import java.util.Locale;
 
 @Service
 public class TimesheetService {
-    IWorkerDAO dao = new WorkerDAO();
 
-        //director make report for all workers by date
+    public final IWorkerDAO dao;
+
+    @Autowired
+    public TimesheetService(IWorkerDAO dao) {
+        this.dao = dao;
+    }
+
+    //director make report for all workers by date
         public List<WorkedDay> directorMakeReportForAllWorkers(String date, String reportDays){
 
         //string date to local date
