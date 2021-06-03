@@ -1,6 +1,9 @@
 package com.SoftDevTimeSheet.dao;
 
 import com.SoftDevTimeSheet.entity.WorkedDay;
+import org.hibernate.jdbc.Work;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -311,6 +314,4 @@ public class WorkerDAO implements IWorkerDAO {
         }
         return false;
     }
-
-
 }
