@@ -1,6 +1,8 @@
 package com.SoftDevTimeSheet.dao;
 
 import com.SoftDevTimeSheet.entity.WorkedDay;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Component
 public class WorkerDAO implements IWorkerDAO {
+    public static Logger logger = LogManager.getLogger(WorkerDAO.class);
 
     @Override
     public boolean addHoursToWorker(String workerName, LocalDate date, int hoursToAdd) throws DAOException{ // timesheet method, that adds hours to worker by name
@@ -49,14 +52,14 @@ public class WorkerDAO implements IWorkerDAO {
                 }
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error(e + " dao error");
             throw new DAOException("failed to add hours",e);
         }finally {
             if(connection != null){
                 try {
                     connection.close();
                 }catch (SQLException e){
-                    System.out.println(e + "5");
+                    e.printStackTrace();
                 }
             }
         }
@@ -92,7 +95,8 @@ public class WorkerDAO implements IWorkerDAO {
                 }
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error(e + " contains date dao error");
+            throw new DAOException("contains date dao error");
         }finally {
             try {
                 if (connection != null) {
@@ -139,6 +143,7 @@ public class WorkerDAO implements IWorkerDAO {
             }
         }catch(SQLException e){
             e.printStackTrace();
+            logger.error(e + " dao error");
             throw new DAOException("failed to get report for all workers", e);
         }finally {
             if(connection != null){
@@ -188,7 +193,7 @@ public class WorkerDAO implements IWorkerDAO {
                 }
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error(e + " dao error");
             throw new DAOException("failed to get report for worker by name",e);
         }finally {
             try {
@@ -229,7 +234,7 @@ public class WorkerDAO implements IWorkerDAO {
                 }
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error(e + " get total hours dao error");
             throw new DAOException("failed to get total hours for worker by worker name", e);
         }finally {
             try {
@@ -263,7 +268,7 @@ public class WorkerDAO implements IWorkerDAO {
                 }
             }
         }catch (SQLException e){
-            System.out.println(e);
+            logger.error(e + " add new worker with role dao error");
             throw new DAOException("failed to add new worker with role", e);
         }finally {
             try{
@@ -299,7 +304,7 @@ public class WorkerDAO implements IWorkerDAO {
                 }
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error(e + "remove worker by name dao error");
             throw new DAOException("failed to remove worker by name", e);
         }finally {
             try{
